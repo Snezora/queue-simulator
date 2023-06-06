@@ -1,7 +1,7 @@
-function y = fmrnd(n)
+function y = fmrnd(n , m)
+    % n is the number of iterations, m is the limit/max value
     y = [];
     r = 0;
-    m = 100; %max value
     
     for(i = 1:n)
         r = rand(1);

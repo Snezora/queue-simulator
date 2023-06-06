@@ -1,7 +1,7 @@
-function y = ed(n)
+function y = ed(n, m)
+    % n is the number of iterations, m is the limit
     r = 0;
     A = [];
-    m = 100; %max value
     
         for (i = 1:n)
         r = rand(1);
@@ -17,4 +17,4 @@ function y = ed(n)
     A = ceil(A);
     y = A;
     
-    end;
+    end

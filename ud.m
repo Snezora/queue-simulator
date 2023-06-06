@@ -1,9 +1,12 @@
-function y = ud(n)
+function y = ud(n, m)
+    
+    % n is the number of iterations, m is the limit 
+
     A=[];
     a = 0;
-    b = 100; %max value
 
-    A = (a + (b - a) * rand(1,n));
+    
+    A = (a + (m - a) * rand(1,n));
 
     A = round(A);
     y = A;

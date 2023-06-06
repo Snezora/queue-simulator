@@ -1,6 +1,6 @@
-function y = lcg(x, a, c, n) 
+function y = lcg(x, a, c, n, m) 
+    % n is the number of iterations, m is the limit
     A = [];
-    m = 100; %max value
     
     for (i = 1:n)
         b = ceil(mod((a*x + c), m) + 1);
