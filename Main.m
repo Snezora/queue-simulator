@@ -20,9 +20,9 @@ function y = Main();
     disp(      '  +---------------------------------------------------------------------+');
     disp(      '  |  Service time   |   Probability   |     CDF     |       Range       |');
     disp(      '  +---------------------------------------------------------------------+');
-    ticServiceTimeProb1 = [3, 4, 5, 6, 7
-                           0.1, 0.2, 0.4, 0.15, 0.05];
-    printTable1(ticServiceTimeProb1);
+    tableC1 = [3, 4, 5, 6, 7
+               0.1, 0.2, 0.4, 0.15, 0.15];
+    printTable1(tableC1);
     pause
     
     printf('\n');
@@ -31,9 +31,9 @@ function y = Main();
     disp(      '  +---------------------------------------------------------------------+');
     disp(      '  |  Service time   |   Probability   |     CDF     |       Range       |');
     disp(      '  +---------------------------------------------------------------------+');
-    ticServiceTimeProb2 = [4, 5, 6, 7, 8
-                           0.1, 0.15, 0.35, 0.2, 0.2];        
-    printTable1(ticServiceTimeProb2);
+    tableC2 = [4, 5, 6, 7, 8
+               0.1, 0.15, 0.35, 0.2, 0.2];        
+    printTable1(tableC2);
     pause
     
     printf('\n');
@@ -42,11 +42,26 @@ function y = Main();
     disp(      '  +---------------------------------------------------------------------+');
     disp(      '  |  Service time   |   Probability   |     CDF     |       Range       |');
     disp(      '  +---------------------------------------------------------------------+');
-    ticServiceTimeProb2 = [2, 3, 4, 5, 6
-                           0.15, 0.2, 0.5, 0.1, 0.05];        
-    printTable1(ticServiceTimeProb2);
+    tableC3 = [2, 3, 4, 5, 6
+               0.15, 0.2, 0.5, 0.1, 0.05];        
+    printTable1(tableC3);
     pause
     
+    printf('\n');
+    disp(      '  +---------------------------------------------------------------------+');
+    disp(      '  |                     Table of Inter-arrival Time                     |');
+    disp(      '  +---------------------------------------------------------------------+');
+    disp(      '  |  Interarrival   |   Probability   |     CDF     |       Range       |');
+    disp(      '  |      Time       |                 |             |                   |');
+    disp(      '  +---------------------------------------------------------------------+');
+    tableIAT = [1, 2, 3, 4, 5, 6, 7, 8
+               0.125, 0.125, 0.125, 0.125, 0.125, 0.125, 0.125, 0.125];        
+    printTable1(tableIAT);
+    pause
+    
+    
+    % --------------------------------------------------------------------------------------------------------- 
+   
     % Getting User Input
     printf('\n');
     custNum = input('Please input the number of customer:');
@@ -55,3 +70,20 @@ function y = Main();
     printf('2. Random Variate Generator for Exponential Distribution\n');
     printf('3. Random Variate Generator for Uniform Distribution\n');
     printf('4. Freemat built-in rand function\n');
+        
+    
+    while true
+        rngIAT = input('Please input the desired Random Number Generator type that you want to use for Interarrival Time:   ');
+        itemRNG = input('Please input the desired Random Number Generator type that you want to use for Number of Items Acquired:   ');
+        if (rngIAT == 1 | rngIAT == 2 | rngIAT == 3 | rngIAT == 4)
+            IAT = generateRange(tableIAT, custNum, rngIAT, itemRNG);
+            break;
+        else
+            printf('Invalid Input!');
+        end;
+    end;
+    
+    printTable2(IAT);
+            
+    
+        
