@@ -73,17 +73,88 @@ function y = Main();
         
     
     while true
-        rngIAT = input('Please input the desired Random Number Generator type that you want to use for Interarrival Time:   ');
+        rngIAT = input('\nPlease input the desired Random Number Generator type that you want to use for Interarrival Time:   ');
+        printf('\n');
         itemRNG = input('Please input the desired Random Number Generator type that you want to use for Number of Items Acquired:   ');
+        printf('\n');
+        serviceTimeRNG = input('Please input the desired Random Number Generator type that you want to use for Service Time:   ');
+        printf('\n');
         if (rngIAT == 1 | rngIAT == 2 | rngIAT == 3 | rngIAT == 4)
-            IAT = generateRange(tableIAT, custNum, rngIAT, itemRNG);
-            break;
+            if (itemRNG == 1 | itemRNG == 2 | itemRNG == 3 | itemRNG == 4)
+                if (serviceTimeRNG == 1 | serviceTimeRNG == 2 | serviceTimeRNG == 3 | serviceTimeRNG == 4)
+                    IAT = generateRange(tableIAT, custNum, rngIAT, itemRNG, serviceTimeRNG);
+                    break;
+                end;
+            end;
         else
             printf('Invalid Input!');
         end;
     end;
     
     printTable2(IAT);
+    
+    %Setup the queues
+    queue1 = [];
+    queue2 = [];
+    queue3 = [];
+    
+    %Set up no. of items split to queues
+    rowIAT = size(IAT, 2);
+    q1No = 1;
+    q2No = 1;
+    q3No = 1;
+    for (i = 1:rowIAT)
+        if (IAT(5, i) <= 15)
+            queue3(1, q3No) = q3No; % Number in terms of Queue
+            queue3(2, q3No) = IAT(1, i); % Customer Number
+            queue3(3, q3No) = IAT(6, i); % Customer RNG Service Time
+            queue3(4, q3No) = IAT(4, i); % Customer Arrival Time
+            q3No = q3No + 1;
+        else
+            if (size(queue1, 2) == 0 && size(queue2, 2) == 0)
+                queue1(1, q1No) = q1No;
+                queue1(2, q1No) = IAT(1, i);
+                queue1(3, q1No) = IAT(6, i);
+                queue1(4, q1No) = IAT(4, i);
+                q1No = q1No + 1;
+            elseif (size(queue1, 2) <= size(queue2,2))
+                queue1(1, q1No) = q1No;
+                queue1(2, q1No) = IAT(1, i);
+                queue1(3, q1No) = IAT(6, i);
+                queue1(4, q1No) = IAT(4, i);
+                q1No = q1No + 1;
+            elseif (size(queue1, 2) >= size(queue2,2))
+                queue2(1, q2No) = q2No;
+                queue2(2, q2No) = IAT(1, i);
+                queue2(3, q2No) = IAT(6, i);
+                queue2(4, q2No) = IAT(4, i);
+                q2No = q2No + 1;
+            end;
+        end;
+    end;
+    
+    
+
+    tableQ1 = [];
+    tableQ1 = queueGenerator(queue1, tableC1, 1);
+    printf('\n');
+    printf('Counter 1: \n');
+    printQueueTable(tableQ1);
+    
+
+    tableQ2 = [];
+    tableQ2 = queueGenerator(queue2, tableC2, 2);
+    printf('\n');
+    printf('Counter 2: \n');
+    printQueueTable(tableQ2);
+    
+    
+    tableQ3 = [];
+    tableQ3 = queueGenerator(queue3, tableC3, 3);
+    printf('\n');
+    printf('Counter 3: \n');
+    printQueueTable(tableQ3);
+    
             
     
         
