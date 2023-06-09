@@ -204,6 +204,20 @@ function y = Main();
     disp(      ' +                                                   Counter Tables                                                                +');
     disp(      ' +---------------------------------------------------------------------------------------------------------------------------------+');
     
+    
+    %TableQ# is basically what we will use to do the evaluation
+     If you look at queueGenerator, it will have y = [queueNo;custNo;RNG;ST;STB;STE;WT;TS;AR;IT];
+     Dictionary: (Let i be the row number in which u wanna access
+     tableQ1(1, i) = queueNo. in the Counter
+     tableQ1(4, i) = Service Time Duration
+     tableQ1(5, i) = Service Time Begin
+     tableQ1(6, i) = Service Time End
+     tableQ1(7, i) = Waiting Time
+     tableQ1(8, i) = Time Spent in the System
+     tableQ1(9, i) = Arrival Time of Customer
+     tableQ1(10, i) = Items by Customer
+     
+     
     printf('\n');
     printf('Counter 1: \n');
     printQueueTable(tableQ1, 1);
