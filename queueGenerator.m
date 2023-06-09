@@ -60,7 +60,7 @@ function y = queueGenerator(queue, counter, x, lastEndService)
                      pause;
                  else
                      %If the Arrival Time is less than the last Customer Service End Time
-                     if (queue(4, i) < STE(i-1))
+                     if ((queue(4, i)) < STE(i-1) && (i > 2))
                          STB(i) = STE(i-1);
                          STE(i) = STB(i) + ST(i);
                          WT(i) = STB(i) - queue(4,i);
