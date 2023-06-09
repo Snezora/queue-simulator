@@ -13,3 +13,4 @@ function y = getArrivalTime(x)
     end;
     
     y = arrTime;
+    end

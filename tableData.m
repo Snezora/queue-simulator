@@ -12,6 +12,7 @@ function y = tableData(x)
             y(3,i) = y(2,i) + y(3,i-1);   %calculating CDF (probability + CDF from previous data)
             y(4,i) = y(5,i-1) + 1;            %upper range = bottom range of previous data
             y(5,i) = floor(y(3,i) * 100);
-        end
+        end;
+    end;
     end
     

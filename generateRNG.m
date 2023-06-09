@@ -20,3 +20,4 @@ function y = generateRNG(mode, n)
     end;
     
     y = A;
+    end
