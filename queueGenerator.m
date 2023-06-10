@@ -33,7 +33,7 @@ function y = queueGenerator(queue, counter, x, lastEndService)
     for (i = 1:rows)
         for (j = 1:CN)
              if (queue(3, i) >= c(4, j) && queue(3,i) <= c(5,j))
-                 if ((x == 3) && (No == 0) && (queue(5,i) >= 15))
+                 if ((x == 3) && (No == 0) && (queue(5,i) > 15))
                          printf('\n');
                          disp(      ' +----------------------------------------------------------------------------------------------------------+');
                          disp(      ' +                            Counter 3 is now open as a Normal Counter                                     +');
