@@ -92,6 +92,10 @@ function y = Main();
         end;
     end;
     
+    %IAT(5,2) = The number of items carried by the customer in the 2nd position of the array
+    
+    
+    %KEEP THIS IN MIND
     printTable2(IAT);
     rowIAT = size(IAT, 2);
     for (i = 1:rowIAT)
@@ -148,6 +152,7 @@ function y = Main();
         end;
     end;
     
+    %KEEP THIS IN MIND
     next_counter = 1; % Distribute equally
     for (i = (lastC3 + 1):rowIAT)
         if (next_counter == 1)
@@ -228,7 +233,120 @@ function y = Main();
     printf('Counter 3: \n');
     printQueueTable(tableQ3, 3);
     
-    end
+    %-------------------------------------------------------------------------------%
+    % Average Waiting Time & Average Inter-arrival Time
+    
+    % Calculate average waiting time for each counter
+    avgWaitingTime1 = sum(tableQ1(7, :)) / size(queue1, 2);
+    avgWaitingTime2 = sum(tableQ2(7, :)) / size(queue2, 2);
+    avgWaitingTime3 = sum(tableQ3(7, :)) / size(queue3, 2);
+    
+    % Calculate average inter-arrival time
+    avgInterArrivalTime = (sum(IAT(3, :)) / size(IAT, 2));
+    
+    % Display the calculated metrics
+    printf('\n');
+    disp('Average Waiting Time:');
+    disp(['Counter 1: ', num2str(avgWaitingTime1)]);
+    disp(['Counter 2: ', num2str(avgWaitingTime2)]);
+    disp(['Counter 3: ', num2str(avgWaitingTime3)]);
+    
+    % Calculate total waiting time across all counters
+	totalWaitingTime = sum(tableQ1(7, :)) + sum(tableQ2(7, :)) + sum(tableQ3(7, :));
+ 
+ 	% Calculate average arrival time across all counters
+	averageWaitingTime = totalWaitingTime / (size(queue1, 2) + size(queue2, 2) + size(queue3, 2));
+ 
+    disp(['All Counter Average Waiting Time: ', num2str(averageWaitingTime)]);
+    
+    printf('\n');
+    disp(['All Counter Average Inter-Arrival Time: ', num2str(avgInterArrivalTime)]);
+    
+    
+    %-------------------------------------------------------------------------------%
+    % Average Arrival Time & Time Spent
+    
+    % Calculate average arrival time for each counter
+    avgArrivalTime1 = sum(tableQ1(9, :)) / size(queue1, 2);
+    avgArrivalTime2 = sum(tableQ2(9, :)) / size(queue2, 2);
+    avgArrivalTime3 = sum(tableQ3(9, :)) / size(queue3, 2);
+    
+    % Calculate average time spent for each counter
+    avgTimeSpent1 = sum(tableQ1(8, :)) / size(queue1, 2);
+    avgTimeSpent2 = sum(tableQ2(8, :)) / size(queue2, 2);
+    avgTimeSpent3 = sum(tableQ3(8, :)) / size(queue3, 2);
+    
+    % Display the calculated metrics
+    printf('\n');
+    disp('Average Arrival Time:');
+    disp(['Counter 1: ', num2str(avgArrivalTime1)]);
+    disp(['Counter 2: ', num2str(avgArrivalTime2)]);
+    disp(['Counter 3: ', num2str(avgArrivalTime3)]);
+    
+    % Calculate total arrival time across all counters
+	totalArrivalTime = sum(tableQ1(9, :)) + sum(tableQ2(9, :)) + sum(tableQ3(9, :));
+ 
+ 	% Calculate average arrival time across all counters
+	averageArrivalTime = totalArrivalTime / (size(queue1, 2) + size(queue2, 2) + size(queue3, 2));
+ 
+    disp(['All Counter Average: ', num2str(averageArrivalTime)]);
+    
+    printf('\n');
+    disp('Average Time Spent:');
+    disp(['Counter 1: ', num2str(avgTimeSpent1)]);
+    disp(['Counter 2: ', num2str(avgTimeSpent2)]);
+    disp(['Counter 3: ', num2str(avgTimeSpent3)]);
+
+
+
+	% Calculate total time spent across all counters
+	totalTimeSpent = sum(tableQ1(8, :)) + sum(tableQ2(8, :)) + sum(tableQ3(8, :));
+
+
+
+	% Calculate average time spent across all counters
+	averageTimeSpent = totalTimeSpent / (size(queue1, 2) + size(queue2, 2) + size(queue3, 2));
+ 
+    disp(['All Counter Average: ', num2str(averageTimeSpent)]);
+ 
+    
+    
+    
+    %-------------------------------------------------------------------------------%
+    % Probability of waiting for each counter & Average Service Time
+    
+    % Calculate amount of waiting customers for each counter
+    amountOfWait1 = getProbWait(tableQ1);
+    amountOfWait2 = getProbWait(tableQ2);
+    amountOfWait3 = getProbWait(tableQ3);
+    
+    % Calculate the probability for a customer to wait for each counter
+    probWait1 = (amountOfWait1 / size(tableQ1, 2)) * 100;
+    probWait2 = (amountOfWait2 / size(tableQ2, 2)) * 100;
+    probWait3 = (amountOfWait3 / size(tableQ3, 2)) * 100;
+    
+    % Display the calculated metrics
+    printf('\n');
+    disp('Probability of Waiting:');
+    disp(['Counter 1: ', num2str(probWait1), '%']);
+    disp(['Counter 2: ', num2str(probWait2), '%']);
+    disp(['Counter 3: ', num2str(probWait3), '%']);
+    
+    
+    
+    % Calculate average service time for each counter
+    avgServiceTime1 = sum(tableQ1(4, :)) / size(queue1, 2);
+    avgServiceTime2 = sum(tableQ2(4, :)) / size(queue2, 2);
+    avgServiceTime3 = sum(tableQ3(4, :)) / size(queue3, 2);
+    
+    % Display the calculated metrics
+    printf('\n');
+    disp('Average Service Time:');
+    disp(['Counter 1: ', num2str(avgServiceTime1)]);
+    disp(['Counter 2: ', num2str(avgServiceTime2)]);
+    disp(['Counter 3: ', num2str(avgServiceTime3)]);
+    
+    
     
             
     
