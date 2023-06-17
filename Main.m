@@ -345,6 +345,43 @@ function y = Main();
     disp(['Counter 1: ', num2str(avgServiceTime1)]);
     disp(['Counter 2: ', num2str(avgServiceTime2)]);
     disp(['Counter 3: ', num2str(avgServiceTime3)]);
+    totalServiceTime = sum(tableQ1(4, :)) + sum(tableQ2(4, :)) + sum(tableQ3(4, :));
+    averageServiceTime = totalServiceTime / (size(queue1, 2) + size(queue2, 2) + size(queue3, 2));
+    disp(['All Counter Average: ', num2str(averageServiceTime)]);
+    
+    printf('\n');
+    printf('\n');
+    printf('\n');
+    
+    disp(      '         Average Waiting Time                                    Average Arrival Time       ');
+    disp(      ' +----------------------------------+                   +----------------------------------+');
+    disp(      ' |   Counter    |      Average      |                   |   Counter    |      Average      |');
+    disp(      ' |     No       |    Waiting Time   |                   |     No       |    Arrival Time   |');
+    disp(      ' +----------------------------------+                   +----------------------------------+');
+    printAverageTable(avgWaitingTime1, avgWaitingTime2, avgWaitingTime3, averageWaitingTime, avgArrivalTime1, avgArrivalTime2, avgArrivalTime3, averageArrivalTime);
+    
+    printf('\n');
+    printf('\n');
+    disp(      '          Average Time Spent                                     Average Service Time       ');
+    disp(      ' +----------------------------------+                   +----------------------------------+');
+    disp(      ' |   Counter    |      Average      |                   |   Counter    |      Average      |');
+    disp(      ' |     No       |     Time Spent    |                   |     No       |    Service Time   |');
+    disp(      ' +----------------------------------+                   +----------------------------------+');
+    printAverageTable(avgTimeSpent1, avgTimeSpent2, avgTimeSpent3, averageTimeSpent, avgServiceTime1, avgServiceTime2, avgServiceTime3, averageServiceTime);
+    
+    printf('\n');
+    printf('\n');
+    disp(      '      Average Inter-arrival Time                                Probability of Waiting      ');
+    disp(      ' +----------------------------------+                   +----------------------------------+');
+    printf(    ' |   Average    |       %3.0f         |                   |   Counter    |  Probability of   |\n', avgInterArrivalTime ); 
+    disp(      ' +----------------------------------+                   |     No       |    Waiting (%)    |');
+    disp(      ' (Look at top for more accurate calc)                   +----------------------------------+');
+    printf(    '                                                        |      1       |       %3.0f         |\n',probWait1);
+    printf(    '                                                        |      2       |       %3.0f         |\n',probWait2);  
+    printf(    '                                                        |      3       |       %3.0f         |\n',probWait3);
+    disp(      '                                                        +----------------------------------+');
+    disp(      '                                                        (Look at top for more accurate calc)');
+    end
     
     
     
