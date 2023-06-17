@@ -3,12 +3,13 @@ function y = lcg(x, a, c, n, m)
     A = [];
     
     for (i = 1:n)
-        b = ceil(mod((a*x + c), m) + 1);
-        x = b;
-        A(i) = b;
+        x = mod((a*x + c), m); % remove ceil function
+        A(i) = x;
         
     end;
     
   	y = A;
    
    end
+   
+ 
